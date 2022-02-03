@@ -13,6 +13,9 @@ const app = express();
 // Preparar o servidor para receber dados em formato json ou não
 app.use(express.json());
 
+// Aplicar o cors no projeto
+app.use(cors());
+
 /* 
 Estabelencendo conexão com banco de dados e realizar CRUD na base
 */
@@ -82,15 +85,21 @@ app.put("/nft/atualizar/:id", (req, res) => {
   );
 });
 
-
-
-
-app.delete("/apagar/:id", (req, res) => {
-  
+app.delete("/nft/apagar/:id", (req, res) => {
+  connection.query(
+    "delete from tbproduct where idproduto = ?",
+    [req.params.id],
+    (erro, resultado) => {
+      if (erro) {
+        res
+          .status(500)
+          .send({ output: `Erro ao tentar apagar o NFT -> ${erro}` });
+        return;
+      }
+      res.status(204).send({ output: resultado });
+    }
+  );
 });
-
-
-
 
 app.listen("5000", () =>
   console.log("Servidor online em: http://localhost:5000 ")

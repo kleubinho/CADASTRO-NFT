@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+img{
+    object-fit: cover;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    justify-content: center;
+    gap: 70px;
+}
+a{
+    text-decoration: none;
+    font-size: 21px;
+    font-weight: 700;
+    color: #1fa7c5;
+}
