@@ -41,7 +41,7 @@ connection.connect((erro) => {
 // Rota para o método get. para a consulta de dados
 app.get("/nfts/list", (req, res) => {
   // consulta sql para selecionar os produtos no banco de dados
-  connection.query("select * from tbproduct", (erro, resultado) => {
+  connection.query("select * from product", (erro, resultado) => {
     if (erro) {
       return res
         .status(500)
@@ -54,7 +54,7 @@ app.get("/nfts/list", (req, res) => {
 // Rota para o método post. para cadastro de dados
 app.post("/nft/register", (req, res) => {
   connection.query(
-    "insert into tbproduct set ?",
+    "insert into product set ?",
     [req.body],
     (erro, resultado) => {
       if (erro) {
@@ -71,7 +71,7 @@ app.post("/nft/register", (req, res) => {
 // Rota para o método put. Apenas para atualizar dados
 app.put("/nft/atualizar/:id", (req, res) => {
   connection.query(
-    "update tbproduct set ? where idproduto=?",
+    "update product set ? where idnft=?",
     [req.body, req.params.id],
     (erro, resultado) => {
       if (erro) {
@@ -85,9 +85,9 @@ app.put("/nft/atualizar/:id", (req, res) => {
   );
 });
 
-app.delete("/nft/apagar/:id", (req, res) => {
+app.delete("/nft/delete/:id", (req, res) => {
   connection.query(
-    "delete from tbproduct where idproduto = ?",
+    "delete from product where idnft = ?",
     [req.params.id],
     (erro, resultado) => {
       if (erro) {
