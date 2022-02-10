@@ -51,6 +51,15 @@ app.get("/nfts/list", (req, res) => {
   });
 });
 
+
+// Rota para buscar dado especifico 
+
+app.get("/nft/buscar:id",(req,res) =>{
+  connection.query("select * from tbproduct where idproduto=?",[req.params.id],(erro,resultado)=>{
+    
+  })
+})
+
 // Rota para o método post. para cadastro de dados
 app.post("/nft/register", (req, res) => {
   connection.query(

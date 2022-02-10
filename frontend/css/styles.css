@@ -96,3 +96,34 @@ a:hover{
 .flexC{
   font-size: 12px;
 }
+
+.button-delete{
+  margin-left: 65px;
+  color: white;
+  font-size: 12px;
+  border-radius: 20px;
+  background-color: rgb(202, 0, 0);
+  padding: 5px;
+}
+.button-delete:hover{
+  background-color: rgb(185, 7, 7);
+  font-size: 14px;
+  color: antiquewhite;
+}
+
+.button-update{
+  margin-left: 40px;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 12px;
+  border-radius: 20px;
+  background-color: rgb(0, 114, 245);
+  padding: 5px;
+}
+
+.button-update:hover{
+  background-color: rgb(0, 91, 195);
+  font-size: 14px;
+  color: antiquewhite;
+}
