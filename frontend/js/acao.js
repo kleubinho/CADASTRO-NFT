@@ -1,3 +1,20 @@
+function apagar() {
+  if (confirm("Você deseja apagar esse produto?") == 0) {
+    window.location.replace("index.html");
+    return;
+  }
+  fetch(
+    `http://localhost:5000/nft/apagar/${window.location.search.substring(4)}`,
+    {
+      method: "DELETE",
+      headers: {
+        accept: "application/json",
+        "content-type": "application/json",
+      },
+    }
+  ).catch((erro) => console.error(`Erro -> ${erro}`));
+}
+
 function carregarDadosAPI() {
   fetch("http://localhost:5000/nfts/list")
     .then((response) => response.json())
@@ -30,7 +47,7 @@ function carregarDadosAPI() {
             </div>
           </div>
           <a class="button-delete" href="delete.html?id=${itens.idproduto}">Apagar</a>
-          <a class="button-update" href="update.html?id=${itens.idproduto}">Atualizar</a>
+          <a class="button-update" href="update.html?id=${itens.idproduto}" >Atualizar</a>
         </div>
       </div>`;
       });
@@ -41,6 +58,10 @@ function carregarDadosAPI() {
     })
     .catch((erro) => console.error(`Erro ao carregar API -> ${erro}`));
 }
+
+// document.getElementById("apagar").onclick = () => {
+//   avancar();
+// };
 
 function cadastrar() {
   let nome = document.getElementById("txtNomeNft").value;
@@ -75,23 +96,52 @@ function cadastrar() {
     .catch((erro) => console.error(`Erro ao cadastrar produto -> ${erro}`));
 }
 
-function carregaratualizar() {
+function carregarAtualizar() {
   // Obter id passado na barra de endereço
   var id = window.location.search.substring(4);
   alert(id);
 
   // Vamos fazer uma busca para receber o produto especifico e carregar o formulário com dados
   fetch(`http://localhost:5000/nft/buscar/${id}`)
-  .then((response)=>response.json())
-  .then((dados)=>{
-    document.getElementById("txtNomeNft").value = dados.output.namenft;
-    document.getElementById("txtDescricao").value = dados.output.descricao;
-    document.getElementById("txtPreco").value = dados.output.preco;
-    document.getElementById("txtFoto").value = dados.output.foto;
-  })
-  .catch((erro)=>console.error(`Erro ao carregar a api -> ${erro}`))
+    .then((response) => response.json())
+    .then((dados) => {
+      console.log(dados);
+      document.getElementById("txtNomeNft").value = dados.output[0].namenft;
+      document.getElementById("txtDescricao").value = dados.output[0].descricao;
+      document.getElementById("txtPreco").value = dados.output[0].preco;
+      document.getElementById("txtFoto").value = dados.output[0].foto;
+    })
+    .catch((erro) => console.error(`Erro ao carregar a api -> ${erro}`));
 }
 
-window.document.body.onload = () => {
-  carregarDadosAPI();
-};
+function atualizar() {
+  if (confirm("Você deseja atualizar este produto") == 0) {
+    return;
+  }
+
+  let id = window.location.search.substring(4);
+
+  let nome = document.getElementById("txtNomeNft").value;
+  let descricao = document.getElementById("txtDescricao").value;
+  let preco = document.getElementById("txtPreco").value;
+  let foto = document.getElementById("txtFoto").value;
+
+  fetch(`http://localhost:5000/nft/atualizar/${id}`, {
+    method: "PUT",
+    headers: {
+      accept: "application/json",
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      namenft: nome,
+      descricao: descricao,
+      preco: preco,
+      foto: foto,
+    }),
+  })
+    .then((response) => response.json())
+    .then((dados) => {
+      alert(dados.output.message);
+    })
+    .catch((erro) => console.error(`Erro ao tentar acessas api -> ${erro}`));
+}

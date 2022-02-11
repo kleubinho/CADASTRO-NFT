@@ -127,3 +127,7 @@ a:hover{
   font-size: 14px;
   color: antiquewhite;
 }
+
+.container{
+  margin: 0 auto;
+}
