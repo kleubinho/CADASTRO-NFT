@@ -51,6 +51,21 @@ app.get("/nfts/list", (req, res) => {
   });
 });
 
+
+// Rota para buscar dado especifico 
+
+app.get("/nft/buscar/:id",(req,res) =>{
+  connection.query("select * from tbproduct where idproduto=?",[req.params.id],(erro,resultado)=>{
+    if(erro){
+      return res.status(500).send({output:`Erro ao tentar executar a consulta ${erro}`})
+    }
+    if(resultado==null || resultado == ""){
+      return res.status(404).send({output:`Não foi possivel localizar este produto`})
+    }
+    res.status(200).send({output:resultado})
+  })
+})
+
 // Rota para o método post. para cadastro de dados
 app.post("/nft/register", (req, res) => {
   connection.query(

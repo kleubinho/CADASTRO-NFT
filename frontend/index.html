@@ -11,32 +11,39 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./css/styles.css" />
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
     <title>Document</title>
   </head>
-
-  <body>
+  <body onload="carregarDadosAPI()">
     <header>
       <a href="index.html">
         <img
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/NFT_Icon.png/640px-NFT_Icon.png"
-        width="45"
-        height="45"
-        alt=""
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/NFT_Icon.png/640px-NFT_Icon.png"
+          width="45"
+          height="45"
+          alt=""
         />
       </a>
-      <a href="index.html"> HOME </a>
-      <a href="register.html">NFT CREATE</a>
-      <a href="update.html">NFT UPDATE</a>
+      <a class="aHeader" href="index.html"> HOME </a>
+      <a class="aHeader" href="register.html">NFT CREATE</a>
+      <a class="aHeader" href="https://www.slimhoods.com/" target="_blank">NFT INFO</a>
     </header>
-    <div class="content">    
-      
-      
+    
+    
+    <div class="content">
       <!-- INICIO DOS NFTS -->
-      <div class="container fluid" id="NFTS">
-  
-    </div>
+      <div class="container fluid">
+        <div id="NFTS"></div>
+        
+      </div>
       <!-- FIM DOS NFTS -->
     </div>
+
+      </div>
+      <div class="footer">
+        <p>© Kleber Henrique, Inc All rights reserved</p>
+        <a class="nftLink" href="https://www.slimhoods.com/">SlimHoods NFT</a>
+      </div>
 
 
     <script src="./js/acao.js"></script>
